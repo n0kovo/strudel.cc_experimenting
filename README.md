@@ -1,4 +1,4 @@
-Trying to learn [Strudel](https://strudel.cc/). Documenting the progress here.
+Playing around with [Strudel](https://strudel.cc/). Documenting my learning progress here.
 
 
 #### Day 01:

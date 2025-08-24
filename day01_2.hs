@@ -6,6 +6,8 @@
 @license CC BY-NC-SA 4.0
 */
 
+setcpm(33)
+
 $: s("sbd").segment(32).degradeBy(.2).ribbon(16,2).rarely(x=>x.slow(2)).clip(2).slow(2)
   .someCyclesBy(.5, x=>x.speed("0.75"))
   .lpf(perlin.range(500,10000).fast(22))

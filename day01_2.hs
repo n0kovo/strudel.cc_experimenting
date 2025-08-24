@@ -1,0 +1,86 @@
+/*
+@title day01_2
+@by n0kovo <https://github.com/n0kovo>
+@details I have almost no idea what I'm doing..
+@genre electro
+@license CC BY-NC-SA 4.0
+*/
+
+$: s("sbd").segment(32).degradeBy(.2).ribbon(16,2).rarely(x=>x.slow(2)).clip(2).slow(2)
+  .someCyclesBy(.5, x=>x.speed("0.75"))
+  .lpf(perlin.range(500,10000).fast(22))
+  .hpf(perlin.range(30,4000).fast(50))
+  .decay(perlin.range(0.0001,0.001).fast(2000))
+  .coarse(rand.range(0,2))
+  .distort(perlin.range(.1,3).fast(1000))
+  .compressor(-20,5,10,.04,.06).postgain(0.4)
+
+
+$: n("<1 ~ 1>*16")
+.scale("<A1>/4:minor").transpose(-12)
+.almostNever(x=>x.transpose(13))
+.s("supersaw").lpf("<100 500 <600 2000>>*4").lpenv("<2 1.5 1>*4").resonance("< 5 <2 7> 10 1 <15 20>>*16")
+.decay(perlin.range(.01,.25).fast(100)).clip(2)
+.almostNever(x=>x.room(1)).rsize(.7).orbit(1)
+
+$: s("~ ~ sd ~").fast(2).bank("RolandTR606").coarse(7).decay(.1)
+
+$: n("[~ ~] ~ [~ <<1 ~> <14 1>>] ~ ~ [ 6/4 ~ 4 ~ ] ~ ~").fast(1)
+.scale("A1:pentatonic")
+.s("square")
+.decay(.05).room(.9).rfade(.13).postgain(.7)
+
+$: s("sbd <[~ ~ ~ sbd ] [~ ~ sbd:0:.25 [sbd ~] ]> ~ ~")
+.gain(.7)
+.dec(.15)
+.hpf(50)
+.duck(1).duckattack(.15).duckdepth(.6)
+
+$: note("~ <[7, 11, 18] [9, 13, 18]> ~ ~")
+  .s("sawtooth")
+  .transpose(48).postgain(.35)
+    .lpf(5)
+      .resonance(0)
+      .lpa(0.008)
+      .lpd(.35)
+      .lps(0)
+      .lpenv(8)
+      .room(1).rsize(5)
+      .echo(5, 3/16, .6)
+      .orbit(1)
+.hpf(35)
+.duck(2).duckattack(.46).duckdepth(1)
+
+$: note("[[~ ~ ~]/2 [~ [9 6 <13 14 13> ] ~ ~]]").slow(2)
+  .s("sawtooth")
+  .transpose(48)
+  .vib("<3 0 <4 6>>*16:<2 8 4>")
+  .dec("<.3 .3 <.04 .6>>*16")
+  .sus("<.3 .3 <.04 .6>>*16")
+  .rel("<.05 <.01 .1>>*16")
+  .attack("<.2 .1 <.02 .5>>*16").postgain(.4).room(.3)
+.hpf(300)
+
+$: note("c2 eb2 f2 g2")
+.s("z_noise")
+.zrand(.4)
+.attack(0.001)
+.decay(0.2)
+.sustain(.7)
+.release(.01)
+.curve(3)
+.slide(.003)
+.deltaSlide(.5)
+.noise(1000)
+.zmod(20)
+.zcrush(.01)
+.zdelay(.25)
+.pitchJump(-70)
+.pitchJumpTime(.7)
+.lfo(.25)
+.tremolo(1)
+.duration(.5)
+.gain(.6)
+.hpf(1400)
+.room(.2)
+.orbit(2)

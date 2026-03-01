@@ -7,12 +7,12 @@
 */
 
 samples('bubo:waveforms');
-setcpm(65)
+setcpm(70)
 
 
 $: stack(
     s("sbd")
-    .duck(2).duckattack(.1896).duckdepth(1).decay(.45).fast(2).gain(.5)
+    .duck(2).duckattack(.1896).duckdepth(1).decay(.39).fast(2).gain(.57)
     .hpf(45)
     //.gain(0)
 ,
@@ -27,10 +27,10 @@ $: stack(
     .hpf(800)
 ,    
     s("~ oh").bank("RolandTR909").fast(2)
-    .dec(.095).gain("[.36 .4]")
+    .dec(.084).gain("[.36 .4]")
     .hpf(700)
     //.gain(0)
-).compressor(-20, 50, 5, .1, .01).postgain(0.55)
+).compressor(-20, 50, 5, .1, .01).postgain(0.49)
   ._scope()
 
 $:
@@ -46,12 +46,13 @@ note("<[e3]!4 [d3]!2 [f3]!2>").transpose(-24)
     .lpd(.03)
     .lps("0")
     .lpr("0")
+.compressor(-30, 40, 5, .1, .01)
 .orbit(2)
 .rarely(x=>x.room(.8).rsize(10))
 .late(perlin.range(.0, "<.014 .01>*2").fast(2)).late(.002)
   .swingBy(1/11, 4)
 .hpf(33).hpq(10).lpf(perlin.range(100, 10000).fast(4))
-.postgain(1.75)
+.postgain(1.3)
   ._scope()
 
 $: note("~@4 ~@4 ~@4 <e4 ~>@3.5")
@@ -84,7 +85,7 @@ $: note("<[d2, a2, e#2, d1]*8>").transpose(12)
 .coarse("[8 6 5 7]/4")
 .hpf("<290 400 >/2")
 .compressor(-23, 15, 7, .1, .01)
-.postgain("<.165 .06 >/2")
+.postgain("<.178 .06 >/2")
 .orbit(2)
 .early(.00045)
-.room(1).rsize(30).rfade(.5)
+.room(1).rsize(32).rfade(.5)
